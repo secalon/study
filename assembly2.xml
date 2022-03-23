@@ -1,0 +1,66 @@
+<assembly>
+    <id>comet</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <dependencySets>
+        <!-- runtime scope jar -->
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+        </dependencySet>
+        <!-- system scope jar -->
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <unpack>false</unpack>
+            <scope>system</scope>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <!-- script -->
+        <fileSet>
+            <directory>./src/main/scripts</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0777</fileMode>
+            <directoryMode>0777</directoryMode>
+            <filtered>true</filtered>
+        </fileSet>
+        <!-- config -->
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0777</fileMode>
+            <directoryMode>0777</directoryMode>
+            <includes>
+                <include>*.xml</include>
+                <include>*.json</include>
+                <include>*.yml</include>
+                <include>*.properties</include>
+            </includes>
+            <filtered>true</filtered>
+        </fileSet>
+        <!-- the project jar -->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <!-- Document -->
+        <fileSet>
+            <directory>${project.basedir}</directory>
+            <outputDirectory>doc</outputDirectory>
+            <includes>
+                <include>README*</include>
+                <include>LICENSE*</include>
+                <include>NOTICE*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

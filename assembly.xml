@@ -1,0 +1,49 @@
+<assembly>
+    <id>comet</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <!-- script -->
+        <fileSet>
+            <directory>./src/main/scripts</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+            <directoryMode>0777</directoryMode>
+            <filtered>true</filtered>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        <!-- config -->
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>config</outputDirectory>
+            <fileMode>0755</fileMode>
+            <directoryMode>0777</directoryMode>
+            <includes>
+                <include>*.xml</include>
+                <include>*.json</include>
+                <include>*.yml</include>
+                <include>*.properties</include>
+                <include>*.txt</include>
+            </includes>
+            <filtered>true</filtered>
+        </fileSet>
+        <!-- 将项目启动jar打包到跟目录中 -->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0755</fileMode>
+            <includes>
+                <include>${project.build.finalName}.jar</include>
+            </includes>
+        </fileSet>
+        <!-- 将第三方依赖打包到lib目录中 -->
+        <fileSet>
+            <directory>${project.build.directory}/lib</directory>
+            <outputDirectory>lib</outputDirectory>
+            <fileMode>0755</fileMode>
+            <directoryMode>0777</directoryMode>
+        </fileSet>
+    </fileSets>
+</assembly>
